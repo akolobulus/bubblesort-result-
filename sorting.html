@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sorting Algorithm Benchmark - Akolo Bulus</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body class="bg-slate-50 p-4 md:p-10 font-sans text-slate-900">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-10">
+        <h1 class="text-3xl font-bold text-slate-900">
+          Execution Time Analysis by Akolo Bulus
+        </h1>
+        <p class="text-slate-500 mt-2">
+          Comparing algorithms across increasing quantities of numbers
+        </p>
+      </div>
+
+      <div
+        class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 mb-8"
+      >
+        <h2
+          class="text-sm font-bold uppercase tracking-wider text-slate-400 mb-4"
+        >
+          Performance Visualization (Log Scale)
+        </h2>
+        <div class="h-80">
+          <canvas id="sortChart"></canvas>
+        </div>
+      </div>
+
+      <div
+        class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden mb-12"
+      >
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="bg-slate-900 text-white text-sm">
+              <th class="p-4">Algorithm</th>
+              <th class="p-4 text-right">5,000 Numbers</th>
+              <th class="p-4 text-right">50,000 Numbers</th>
+              <th class="p-4 text-right">100,000 Numbers</th>
+            </tr>
+          </thead>
+          <tbody class="text-slate-700 divide-y divide-slate-100">
+            <tr class="hover:bg-slate-50 transition-colors">
+              <td class="p-4 font-semibold">Bubble Sort</td>
+              <td class="p-4 text-right">48 ms</td>
+              <td class="p-4 text-right text-red-600 font-bold">3.727 s</td>
+              <td class="p-4 text-right text-red-700 font-black bg-red-50">
+                18.336 s
+              </td>
+            </tr>
+            <tr class="hover:bg-slate-50 transition-colors">
+              <td class="p-4 font-semibold text-slate-600">Insertion Sort</td>
+              <td class="p-4 text-right">13 ms</td>
+              <td class="p-4 text-right text-orange-600 font-bold">1.429 s</td>
+              <td class="p-4 text-right text-orange-700 font-bold bg-orange-50">
+                7.024 s
+              </td>
+            </tr>
+            <tr class="hover:bg-slate-50 transition-colors">
+              <td class="p-4 font-semibold text-slate-600">Merge Sort</td>
+              <td class="p-4 text-right">2 ms</td>
+              <td class="p-4 text-right text-emerald-600 font-medium">14 ms</td>
+              <td class="p-4 text-right text-emerald-700 font-bold">88 ms</td>
+            </tr>
+            <tr class="hover:bg-slate-50 transition-colors">
+              <td class="p-4 font-semibold text-slate-600">Quick Sort</td>
+              <td class="p-4 text-right">3 ms</td>
+              <td class="p-4 text-right text-indigo-600 font-medium">27 ms</td>
+              <td class="p-4 text-right text-indigo-700 font-bold">59 ms</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="mb-12">
+        <header class="text-center mb-8">
+          <h2 class="text-2xl font-extrabold text-slate-900 tracking-tight">
+            Final Sorting Benchmark
+          </h2>
+          <p class="text-slate-500 italic">
+            Ranked by efficiency at 100,000 Numbers
+          </p>
+        </header>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+          <div
+            class="bg-emerald-50 border border-emerald-200 p-4 rounded-xl text-center"
+          >
+            <span class="text-xs font-bold text-emerald-600 uppercase"
+              >1st (Fastest)</span
+            >
+            <p class="text-lg font-bold text-emerald-900">Quick Sort</p>
+          </div>
+          <div
+            class="bg-teal-50 border border-teal-200 p-4 rounded-xl text-center"
+          >
+            <span class="text-xs font-bold text-teal-600 uppercase">2nd</span>
+            <p class="text-lg font-bold text-teal-900">Merge Sort</p>
+          </div>
+          <div
+            class="bg-orange-50 border border-orange-200 p-4 rounded-xl text-center"
+          >
+            <span class="text-xs font-bold text-orange-600 uppercase">3rd</span>
+            <p class="text-lg font-bold text-orange-900">Insertion</p>
+          </div>
+          <div
+            class="bg-red-50 border border-red-200 p-4 rounded-xl text-center"
+          >
+            <span class="text-xs font-bold text-red-600 uppercase"
+              >4th (Slowest)</span
+            >
+            <p class="text-lg font-bold text-red-900">Bubble Sort</p>
+          </div>
+        </div>
+
+        <div
+          class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 mb-10 h-96"
+        >
+          <canvas id="finalChart"></canvas>
+        </div>
+
+        <div class="bg-slate-900 text-slate-200 p-8 rounded-2xl shadow-xl">
+          <h2 class="text-xl font-bold text-white mb-4">My Observations</h2>
+          <ul class="space-y-4 text-sm leading-relaxed">
+            <li class="flex gap-3">
+              <span class="text-emerald-400 font-bold">1.</span>
+              <p>
+                <span class="font-semibold text-white">I observed that</span>
+                the scalability gap is massive; Quick Sort is 310x faster than
+                Bubble Sort at the highest scale.
+              </p>
+            </li>
+            <li class="flex gap-3">
+              <span class="text-emerald-400 font-bold">2.</span>
+              <p>
+                <span class="font-semibold text-white">I observed that</span>
+                $O(n^2)$ algorithms hit a "time wall" where they jump from ms to
+                seconds very quickly.
+              </p>
+            </li>
+            <li class="flex gap-3">
+              <span class="text-emerald-400 font-bold">3.</span>
+              <p>
+                <span class="font-semibold text-white">I observed that</span>
+                doubling the data quadruples the wait time for the slower
+                algorithms, proving their inefficiency for large sets.
+              </p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const formatTime = (ms) =>
+        ms >= 1000 ? (ms / 1000).toFixed(3) + " s" : ms + " ms";
+
+      // Chart 1
+      const ctx1 = document.getElementById("sortChart").getContext("2d");
+      new Chart(ctx1, {
+        type: "bar",
+        data: {
+          labels: ["5,000 Numbers", "50,000 Numbers", "100,000 Numbers"],
+          datasets: [
+            {
+              label: "Bubble Sort",
+              data: [48, 3727, 18336],
+              backgroundColor: "#ef4444",
+            },
+            {
+              label: "Insertion Sort",
+              data: [13, 1429, 7024],
+              backgroundColor: "#f97316",
+            },
+            {
+              label: "Merge Sort",
+              data: [2, 14, 88],
+              backgroundColor: "#10b981",
+            },
+            {
+              label: "Quick Sort",
+              data: [3, 27, 59],
+              backgroundColor: "#6366f1",
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: {
+              type: "logarithmic",
+              title: { display: true, text: "Execution Time (ms)" },
+            },
+          },
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: (item) =>
+                  `${item.dataset.label}: ${formatTime(item.raw)}`,
+              },
+            },
+          },
+        },
+      });
+
+      // Chart 2
+      const ctx2 = document.getElementById("finalChart").getContext("2d");
+      new Chart(ctx2, {
+        type: "bar",
+        data: {
+          labels: ["5k Numbers", "50k Numbers", "100k Numbers"],
+          datasets: [
+            {
+              label: "Bubble Sort",
+              data: [48, 3727, 18336],
+              backgroundColor: "#ef4444",
+            },
+            {
+              label: "Insertion Sort",
+              data: [13, 1429, 7024],
+              backgroundColor: "#f97316",
+            },
+            {
+              label: "Merge Sort",
+              data: [2, 14, 88],
+              backgroundColor: "#14b8a6",
+            },
+            {
+              label: "Quick Sort",
+              data: [3, 27, 59],
+              backgroundColor: "#10b981",
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: { y: { type: "logarithmic" } },
+        },
+      });
+    </script>
+  </body>
+</html>
